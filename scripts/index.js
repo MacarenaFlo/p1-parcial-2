@@ -13,6 +13,8 @@ let filtroSeleccionado = null;
 let ordenPrecio = null; // null = sin orden, 'asc' = menor a mayor, 'desc' = mayor a menor
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Cargar carrito desde localStorage al iniciar
+    cargarCarritoDesdeStorage();
 
     fetch("./productos.json")
         .then(response => response.json())
@@ -247,6 +249,7 @@ function agregarAlCarrito(idProducto) {
             });
         }
         actualizarCarrito();
+        guardarCarritoEnStorage();
     }
 }
 
@@ -254,6 +257,7 @@ function agregarAlCarrito(idProducto) {
 function vaciarCarrito() {
     carrito = [];
     actualizarCarrito();
+    guardarCarritoEnStorage();
 }
 
 function itemsEnCarrito() {
@@ -277,6 +281,19 @@ function actualizarCarrito() {
     cantidadItems.innerText = itemsEnCarrito();
     const total = document.querySelector("#totalCarrito");
     total.innerText = totalCarrito();
+}
+
+// Funciones para manejar localStorage del carrito
+function guardarCarritoEnStorage() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function cargarCarritoDesdeStorage() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        actualizarCarrito();
+    }
 }
 
 // Funciones auxiliares para crear elementos del modal
@@ -464,9 +481,10 @@ function disminuirDelCarrito(idProducto) {
             itemExistente.cantidad -= 1;
         } else {
             eliminarDelCarrito(idProducto);
-            return; // Evitar doble actualización
+            return; // Evitar doble actualización y guardado
         }
         actualizarCarrito();
+        guardarCarritoEnStorage();
     }
 }
 
@@ -475,6 +493,7 @@ function eliminarDelCarrito(idProducto) {
     if (index !== -1) {
         carrito.splice(index, 1);
         actualizarCarrito();
+        guardarCarritoEnStorage();
     }
 }
 
