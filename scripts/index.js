@@ -301,7 +301,9 @@ function crearModalCarrito() {
 
 function mostrarModalCarrito() {
     const modal = crearModalCarrito();
-    const bootstrapModal = new bootstrap.Modal(modal);
+    const bootstrapModal = new bootstrap.Modal(modal, {
+        backdrop: false // No se porque tuve que poner esto para evitar que se genere un modal dentro de otro. TODO: REVISAR
+    });
     bootstrapModal.show();
 }
 
