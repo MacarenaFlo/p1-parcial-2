@@ -129,6 +129,203 @@ function actualizarCarrito() {
     total.innerText = totalCarrito();
 }
 
+// Funciones auxiliares para crear elementos del modal
+function crearBotonModal(texto, clases, callback) {
+    const boton = document.createElement("button");
+    boton.setAttribute("class", clases);
+    boton.innerText = texto;
+    boton.addEventListener("click", callback);
+    return boton;
+}
+
+function crearItemCarrito(item) {
+    const itemCarrito = document.createElement("div");
+    itemCarrito.setAttribute("class", "d-flex justify-content-between align-items-center border-bottom py-2");
+
+    const infoItem = document.createElement("div");
+    infoItem.innerHTML = `
+        <h6 class="mb-1">${item.nombre}</h6>
+        <small class="text-muted">Cantidad: ${item.cantidad}</small>
+    `;
+
+    const precioItem = document.createElement("div");
+    precioItem.setAttribute("class", "text-end");
+    precioItem.innerHTML = `
+        <strong>$${(item.precio * item.cantidad).toFixed(2)}</strong>
+        <br>
+        <small class="text-muted">$${item.precio} c/u</small>
+    `;
+
+    const botonesItem = document.createElement("div");
+    botonesItem.setAttribute("class", "d-flex flex-column gap-1");
+
+    const botonAumentar = crearBotonModal("+", "btn btn-sm btn-outline-success", () => {
+        agregarAlCarrito(item.id);
+        actualizarContenidoModal();
+    });
+
+    const botonDisminuir = crearBotonModal("-", "btn btn-sm btn-outline-warning", () => {
+        disminuirDelCarrito(item.id);
+        actualizarContenidoModal();
+    });
+
+    const botonEliminar = crearBotonModal("×", "btn btn-sm btn-outline-danger", () => {
+        eliminarDelCarrito(item.id);
+        actualizarContenidoModal();
+    });
+
+    botonesItem.appendChild(botonAumentar);
+    botonesItem.appendChild(botonDisminuir);
+    botonesItem.appendChild(botonEliminar);
+
+    itemCarrito.appendChild(infoItem);
+    itemCarrito.appendChild(precioItem);
+    itemCarrito.appendChild(botonesItem);
+
+    return itemCarrito;
+}
+
+function actualizarContenidoModal() {
+    const modalExistente = document.querySelector("#modalCarrito");
+    if (!modalExistente) return;
+
+    const modalBody = modalExistente.querySelector(".modal-body");
+    const modalFooter = modalExistente.querySelector(".modal-footer");
+
+    // Limpiar y recrear el body
+    modalBody.innerHTML = "";
+
+    if (carrito.length === 0) {
+        const mensajeVacio = document.createElement("p");
+        mensajeVacio.setAttribute("class", "text-center text-muted");
+        mensajeVacio.innerText = "Tu carrito está vacío";
+        modalBody.appendChild(mensajeVacio);
+    } else {
+        carrito.forEach(item => modalBody.appendChild(crearItemCarrito(item)));
+    }
+
+    // Actualizar total en el footer
+    const totalInfo = modalFooter.querySelector(".me-auto");
+    if (totalInfo) {
+        totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - $${totalCarrito().toFixed(2)}</strong>`;
+    }
+}
+
+function crearHeaderModal() {
+    const modalHeader = document.createElement("div");
+    modalHeader.setAttribute("class", "modal-header");
+
+    const modalTitle = document.createElement("h5");
+    modalTitle.setAttribute("class", "modal-title");
+    modalTitle.innerText = "Mi Carrito de Compras";
+
+    const botonCerrar = document.createElement("button");
+    botonCerrar.setAttribute("type", "button");
+    botonCerrar.setAttribute("class", "btn-close");
+    botonCerrar.setAttribute("data-bs-dismiss", "modal");
+
+    modalHeader.appendChild(modalTitle);
+    modalHeader.appendChild(botonCerrar);
+    return modalHeader;
+}
+
+function crearBodyModal() {
+    const modalBody = document.createElement("div");
+    modalBody.setAttribute("class", "modal-body");
+
+    if (carrito.length === 0) {
+        const mensajeVacio = document.createElement("p");
+        mensajeVacio.setAttribute("class", "text-center text-muted");
+        mensajeVacio.innerText = "Tu carrito está vacío";
+        modalBody.appendChild(mensajeVacio);
+    } else {
+        carrito.forEach(item => modalBody.appendChild(crearItemCarrito(item)));
+    }
+    return modalBody;
+}
+
+function crearFooterModal() {
+    const modalFooter = document.createElement("div");
+    modalFooter.setAttribute("class", "modal-footer");
+
+    const totalInfo = document.createElement("div");
+    totalInfo.setAttribute("class", "me-auto");
+    totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - $${totalCarrito().toFixed(2)}</strong>`;
+
+    const botonVaciar = crearBotonModal("Vaciar Carrito", "btn btn-outline-danger", () => {
+        vaciarCarrito();
+        actualizarContenidoModal();
+    });
+    botonVaciar.setAttribute("type", "button");
+
+    const botonContinuar = crearBotonModal("Continuar Comprando", "btn btn-primary", null);
+    botonContinuar.setAttribute("type", "button");
+    botonContinuar.setAttribute("data-bs-dismiss", "modal");
+
+    modalFooter.appendChild(totalInfo);
+    modalFooter.appendChild(botonVaciar);
+    modalFooter.appendChild(botonContinuar);
+    return modalFooter;
+}
+
+function crearModalCarrito() {
+    // Eliminar modal existente si existe
+    const modalExistente = document.querySelector("#modalCarrito");
+    if (modalExistente) {
+        modalExistente.remove();
+    }
+
+    // Crear estructura del modal
+    const modal = document.createElement("div");
+    modal.setAttribute("id", "modalCarrito");
+    modal.setAttribute("class", "modal fade");
+    modal.setAttribute("tabindex", "-1");
+
+    const modalDialog = document.createElement("div");
+    modalDialog.setAttribute("class", "modal-dialog modal-lg");
+
+    const modalContent = document.createElement("div");
+    modalContent.setAttribute("class", "modal-content");
+
+    // Ensamblar el modal
+    modalContent.appendChild(crearHeaderModal());
+    modalContent.appendChild(crearBodyModal());
+    modalContent.appendChild(crearFooterModal());
+    modalDialog.appendChild(modalContent);
+    modal.appendChild(modalDialog);
+
+    // Agregar al DOM
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function mostrarModalCarrito() {
+    const modal = crearModalCarrito();
+    const bootstrapModal = new bootstrap.Modal(modal);
+    bootstrapModal.show();
+}
+
+function disminuirDelCarrito(idProducto) {
+    const itemExistente = carrito.find(item => item.id === idProducto);
+    if (itemExistente) {
+        if (itemExistente.cantidad > 1) {
+            itemExistente.cantidad -= 1;
+        } else {
+            eliminarDelCarrito(idProducto);
+            return; // Evitar doble actualización
+        }
+        actualizarCarrito();
+    }
+}
+
+function eliminarDelCarrito(idProducto) {
+    const index = carrito.findIndex(item => item.id === idProducto);
+    if (index !== -1) {
+        carrito.splice(index, 1);
+        actualizarCarrito();
+    }
+}
+
 function mostrarProductos() {
     const contenedor = document.querySelector("#productos");
     contenedor.innerHTML = ""; // Limpiar el contenedor

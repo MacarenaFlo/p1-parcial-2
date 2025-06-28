@@ -489,13 +489,30 @@ input[type='submit']:hover {
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.9);
 }
+*/
 
-.modal a {
+.modal-personalizado {
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-personalizado a {
     text-decoration: none;
     color: #d0e0e3;
 }
 
-.modal a.cerrar {
+.modal-personalizado a.cerrar {
     position: fixed;
     z-index: 1;
     display: flex;
@@ -515,31 +532,31 @@ input[type='submit']:hover {
     text-decoration: none;
 }
 
-.modal a.cerrar:hover {
+.modal-personalizado a.cerrar:hover {
     background-color: #1a4a5e;
     color: rgba(255, 255, 255, 0.9);
 }
 
-.modal img {
+.modal-personalizado img {
     height: 30%;
 }
 
-.modal h3,
-.modal p,
-.modal li {
+.modal-personalizado h3,
+.modal-personalizado p,
+.modal-personalizado li {
     margin: 0;
     text-align: center;
     color: #d0e0e3;
 }
 
-.modal li {
+.modal-personalizado li {
     display: flex;
     justify-content: space-around;
     margin: 0.25em 0;
     width: 90%;
 }
 
-.modal li span {
+.modal-personalizado li span {
     font-size: 1em;
 }
 
