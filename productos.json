@@ -105,7 +105,7 @@
   },
   {
     "id": 14,
-    "nombre": "Difusor Eucalipto Natural",
+    "nombre": "Difusor Eucalipto",
     "descripcion": "Fragancia herbal refrescante que purifica el ambiente.",
     "precio": 16750,
     "categoria": ["Difusores Aromáticos"],
@@ -137,9 +137,9 @@
   },
   {
     "id": 18,
-    "nombre": "Difusor Sándalo & Cedro",
+    "nombre": "Difusor Sándalo-Cedro",
     "descripcion": "Aroma amaderado y elegante que transmite serenidad.",
-    "precio": 205000,
+    "precio": 20500,
     "categoria": ["Difusores Aromáticos"],
     "imagen": "/images/difusores/difusor_4.jpg"
   },
@@ -161,7 +161,7 @@
   },
   {
     "id": 21,
-    "nombre": "Aceite Esencial de Naranja Dulce",
+    "nombre": "Aceite Esencial de Naranja",
     "descripcion": "Fragancia cítrica energizante para revitalizar espacios.",
     "precio": 7750,
     "categoria": ["Aceites Aromatizantes"],
@@ -183,17 +183,17 @@
     "categoria": ["Accesorios"],
     "imagen": "/images/aceites/aceite+horno.jpg"
   },
-  {
+    {
     "id": 24,
-    "nombre": "Aceite Esencial de Menta",
-    "descripcion": "Estimulante natural que ayuda a despejar la mente.",
-    "precio": 8250,
-    "categoria": ["Aceites Aromatizantes"],
-    "imagen": "/images/aceites/aceites.jpg"
+    "nombre": "Colgante Difusor de Aromas",
+    "descripcion": "Accesorio portátil para llevar tu aroma favorito contigo todo el día.",
+    "precio": 34500,
+    "categoria": ["Accesorios"],
+    "imagen": "/images/aceites/colgante.png.jpg"
   },
   {
     "id": 25,
-    "nombre": "Roll-on de Aceite de Árbol de Té",
+    "nombre": "Roll-on de Aceite de Árbol",
     "descripcion": "Aceite listo para usar en piel, con propiedades antibacterianas.",
     "precio": 16900,
     "categoria": ["Aceites Aromatizantes"],
@@ -201,12 +201,13 @@
   },
   {
     "id": 26,
-    "nombre": "Colgante Difusor Personal",
-    "descripcion": "Accesorio portátil para llevar tu aroma favorito contigo todo el día.",
-    "precio": 34500,
-    "categoria": ["Accesorios"],
-    "imagen": "/images/aceites/colgante.png.jpg"
+    "nombre": "Aceite Esencial de Menta",
+    "descripcion": "Estimulante natural que ayuda a despejar la mente.",
+    "precio": 8250,
+    "categoria": ["Aceites Aromatizantes"],
+    "imagen": "/images/aceites/aceites.jpg"
   },
+
   {
     "id": 27,
     "nombre": "Aceite Esencial de Romero",
