@@ -6,11 +6,32 @@
 
 // Podria levantar los productos de un JSON o directamente estar escritos aca
 
+let productos = [];
+
 document.addEventListener("DOMContentLoaded", () => {
 
     fetch("./productos.json")
         .then(response => response.json())
-        .then(productos => {
+        .then(data => {
+
+            data.forEach(item => {
+                const producto = new Producto(
+                    item.id,
+                    item.nombre,
+                    item.descripcion,
+                    item.precio,
+                    item.categorias,
+                    item.imagen
+                );
+                productos.push(producto);
+            });
+            mostrarProductos();
+        });
+});
+
+function mostrarProductos() {
+    const contenedor = document.querySelector("#productos");
+    contenedor.innerHTML = ""; // Limpiar el contenedor
 
             productos.forEach(producto => {
 
@@ -41,15 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 botonVerMas.setAttribute("style", "width: 100%;");
                 botonVerMas.innerText = "Ver más";
                 botonVerMas.addEventListener("click", () => {
-                    mostrarDetallesProducto(producto.id);
-
-
+                    mostrarProductos();
                 });
 
 
-                const categoria = document.createElement("p");
-                categoria.setAttribute("class", "categoria");
-                categoria.innerText = producto.categoria;
+                const categorias = document.createElement("p");
+                categorias.setAttribute("class", "categoria");
+                categorias.innerText = producto.categorias.length > 0 ? producto.categorias.join(", ") : "Sin categoría";
 
                 const precioProducto = document.createElement("p");
                 precioProducto.setAttribute("class", "card-text");
@@ -65,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     agregarAlCarrito(producto.id);
                 });
 
-                cardBody.appendChild(categoria);
+                cardBody.appendChild(categorias);
                 cardBody.appendChild(nombreProducto);
                 cardBody.appendChild(imagen);
                 cardBody.appendChild(descripcionProducto);
@@ -77,11 +96,4 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector("#productos").appendChild(card);
             });
 
-        })
-
-
-});
-
-
-
-
+}
