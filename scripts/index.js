@@ -8,6 +8,7 @@
 
 let productos = [];
 let categorias = [];
+let carrito = [];
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -62,6 +63,23 @@ function mostrarFiltros() {
     });
 
     contenedorFiltros.appendChild(contenedorBotones);
+}
+
+function agregarAlCarrito(idProducto) {
+    const producto = productos.find(p => p.id === idProducto);
+    if (producto) {
+        const itemExistente = carrito.find(item => item.id === idProducto);
+        if (itemExistente) {
+            itemExistente.cantidad += 1;
+        } else {
+            carrito.push({
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                cantidad: 1
+            });
+        }
+    }
 }
 
 function mostrarProductos() {
