@@ -36,12 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 descripcionProducto.setAttribute("class", "card-text text-truncate");
                 descripcionProducto.innerText = producto.descripcion;
 
-                const botonVerMas = document.createElement("a");
+                const botonVerMas = document.createElement("button");
                 botonVerMas.setAttribute("class", "detalle");
                 botonVerMas.setAttribute("style", "width: 100%;");
                 botonVerMas.innerText = "Ver más";
                 botonVerMas.addEventListener("click", () => {
                     mostrarDetallesProducto(producto.id);
+
 
                 });
 
@@ -80,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
-
 
 
 
