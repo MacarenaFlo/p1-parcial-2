@@ -33,10 +33,17 @@ html {
 }
 
 /**	Body */
-body {
-    background-color: #134f5c;
-    color: #d0e0e3;
+
+
+
+
+img {
+    display: block;
+    max-width: 100%;
+
 }
+
+
 
 /**	Header */
 header {
@@ -45,24 +52,19 @@ header {
     justify-content: center;
     align-items: center;
     padding: 2em;
+    
 }
 
 /**	Encabezados */
-h1,
-h2,
-h3 {
+h1 {
     font-family: 'Montserrat';
-    font-size: 3.6em;
+    color:#fffeff;
+    text-shadow: #f8a8f8 0.1em 0.1em 0.2em;
+    font-size: 3em;
     line-height: 1.5;
     font-weight: 700;
     text-align: center;
-}
-
-h2,
-h3 {
-    margin: 1em 0;
-    font-size: 3em;
-    color: #134f5c;
+    
 }
 
 /**	Main */
@@ -72,9 +74,16 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 4em 2em;
-    background-color: #fff;
+   
 }
-
+body {
+    background-image: url("/images/fondo.jpg");
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  
+}
 ul,
 ol {
     display: flex;
