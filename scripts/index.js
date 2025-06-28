@@ -7,6 +7,7 @@
 // Podria levantar los productos de un JSON o directamente estar escritos aca
 
 let productos = [];
+let categorias = [];
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -26,8 +27,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 productos.push(producto);
             });
             mostrarProductos();
+            mostrarFiltros();
         });
 });
+
+function listarCategorias() {
+    for (const producto of productos) {
+        producto.categorias.forEach(categoria => {
+            if (!categorias.includes(categoria)) {
+                categorias.push(categoria);
+            }
+        });
+    }
+}
+
+function mostrarFiltros() {
+    listarCategorias(); // Asegurarse de que las categorías estén actualizadas
+    const contenedorFiltros = document.querySelector("#filtros");
+    contenedorFiltros.innerHTML = ""; // Limpiar el contenedor
+
+    const titulo = document.createElement("h3");
+    titulo.innerText = "Filtros";
+    titulo.setAttribute("class", "d-none");
+    contenedorFiltros.appendChild(titulo);
+
+    const contenedorBotones = document.createElement("div");
+    contenedorBotones.setAttribute("class", "d-flex flex-wrap gap-2");
+
+    categorias.forEach(categoria => {
+        const boton = document.createElement("button");
+        boton.innerText = categoria;
+        boton.setAttribute("class", "btn btn-secondary");
+        contenedorBotones.appendChild(boton);
+    });
+
+    contenedorFiltros.appendChild(contenedorBotones);
+}
 
 function mostrarProductos() {
     const contenedor = document.querySelector("#productos");

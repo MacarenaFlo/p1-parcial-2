@@ -9,4 +9,9 @@ class Producto {
         this.imagen = imagen;
     }
 
+    // Metodo que devuelve si la categoria existe en el producto
+    tieneCategoria(categoria) {
+        return this.categorias.includes(categoria);
+    }
+
 }
