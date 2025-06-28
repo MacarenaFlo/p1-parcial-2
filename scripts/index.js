@@ -19,15 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
 
             data.forEach(item => {
-                const producto = new Producto(
-                    item.id,
-                    item.nombre,
-                    item.descripcion,
-                    item.precio,
-                    item.categorias,
-                    item.imagen
-                );
-                productos.push(producto);
+                // Verificar si ya existe un producto con el mismo id
+                if (!productos.some(p => p.id === item.id)) {
+                    const producto = new Producto(
+                        item.id,
+                        item.nombre,
+                        item.descripcion,
+                        item.precio,
+                        item.categorias,
+                        item.imagen
+                    );
+                    productos.push(producto);
+                }
             });
             mostrarProductos();
             mostrarFiltros();
