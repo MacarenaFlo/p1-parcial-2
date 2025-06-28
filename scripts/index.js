@@ -9,6 +9,7 @@
 let productos = [];
 let categorias = [];
 let carrito = [];
+let filtroSeleccionado = null;
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -55,10 +56,26 @@ function mostrarFiltros() {
     const contenedorBotones = document.createElement("div");
     contenedorBotones.setAttribute("class", "d-flex flex-wrap gap-2");
 
+    // Botón para mostrar todos los productos
+    const botonTodos = document.createElement("button");
+    botonTodos.innerText = "Todos";
+    botonTodos.setAttribute("class", filtroSeleccionado === null ? "btn btn-primary" : "btn btn-secondary");
+    botonTodos.addEventListener("click", () => {
+        filtroSeleccionado = null;
+        mostrarProductos();
+        mostrarFiltros();
+    });
+    contenedorBotones.appendChild(botonTodos);
+
     categorias.forEach(categoria => {
         const boton = document.createElement("button");
         boton.innerText = categoria;
-        boton.setAttribute("class", "btn btn-secondary");
+        boton.setAttribute("class", filtroSeleccionado === categoria ? "btn btn-primary" : "btn btn-secondary");
+        boton.addEventListener("click", () => {
+            filtroSeleccionado = categoria;
+            mostrarProductos();
+            mostrarFiltros();
+        });
         contenedorBotones.appendChild(boton);
     });
 
@@ -115,8 +132,12 @@ function actualizarCarrito() {
 function mostrarProductos() {
     const contenedor = document.querySelector("#productos");
     contenedor.innerHTML = ""; // Limpiar el contenedor
+    // Filtrar los productos según el filtro seleccionado
+    const productosFiltrados = filtroSeleccionado === null
+        ? productos
+        : productos.filter(producto => producto.tieneCategoria(filtroSeleccionado));
 
-            productos.forEach(producto => {
+    productosFiltrados.forEach(producto => {
 
                 const card = document.createElement("div");
                 card.setAttribute("class", "card mb-4");
