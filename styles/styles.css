@@ -47,24 +47,24 @@ header {
     justify-content: center;
     align-items: center;
     padding: 2em;
-    
+
 }
 
 /**	Encabezados */
 h1 {
     font-family: 'Montserrat';
-    color:#fffeff;
+    color: #fffeff;
     text-shadow: #f8a8f8 0.1em 0.1em 0.2em;
     font-size: 3em;
     line-height: 1.5;
     font-weight: 700;
     text-align: center;
-    
+
 }
 
 h2 {
     font-family: 'Montserrat';
-    color:#fffeff;
+    color: #fffeff;
     font-size: 2.4em;
     line-height: 1.5;
     font-weight: 700;
@@ -73,7 +73,7 @@ h2 {
 
 h3 {
     font-family: 'Montserrat';
-    color:#fffeff;
+    color: #fffeff;
     font-size: 2em;
     line-height: 1.5;
     font-weight: 600;
@@ -82,12 +82,13 @@ h3 {
 
 p {
     font-family: 'Montserrat';
-    color:#000000;
+    color: #000000;
     font-size: 1.6em;
     line-height: 1.5;
     font-weight: 400;
-    
+
 }
+
 /**	Main */
 main {
     display: flex;
@@ -95,19 +96,21 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 4em 2em;
-   
+
 }
+
 body {
     background-image: url("/images/fondo.jpg");
-    background-size:cover;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-  
+
 }
+
 #filtros p {
     display: flex;
-    flex-direction:row-reverse;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -125,14 +128,15 @@ body {
     font-size: 2rem;
     margin: 0 0.5em;
     padding: 1.5em 1em;
-    border-radius: 0.5em;;
+    border-radius: 0.5em;
+    ;
 }
 
 
 
-#productos{
+#productos {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
     margin: 2rem auto;
@@ -161,20 +165,22 @@ body {
     text-align: center;
     padding: auto;
 }
+
 #carrito {
     display: flex;
     flex-direction: column;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: flex-end;
     width: 100%;
     padding: 2em;
-    
-    > p {
+
+    >p {
         font-size: 1.5em;
         color: #d0e0e3;
         margin: 0.5em 0;
     }
-    > button {
+
+    >button {
         margin: 0.5em 0;
         padding: 0.5em 1em;
         background: #f706ae;
@@ -187,6 +193,7 @@ body {
         cursor: pointer;
     }
 }
+
 .btn {
     background: #f706ae;
     color: #d0e0e3;
@@ -198,7 +205,8 @@ body {
     border-radius: 0.5em;
     cursor: pointer;
 }
-.detalle{
+
+.detalle {
     color: #fdfdfd;
     font-size: 1.5em;
     line-height: 1.5;
@@ -208,9 +216,10 @@ body {
     border-radius: 0.5em;
     cursor: pointer;
 }
+
 .nombre-producto {
     font-family: 'Montserrat';
-    color:#000000;
+    color: #000000;
     font-size: 2em;
     line-height: 1.5;
     font-weight: 600;
@@ -218,15 +227,17 @@ body {
     margin: 0.5em 0;
     width: 100%;
 }
+
 .categoria {
     font-family: 'Montserrat';
-    color:#ff86ff;
+    color: #ff86ff;
     font-size: 1.6em;
     line-height: 1.5;
     font-weight: 600;
     margin: 5em 2em;
-   
+
 }
+
 ul,
 ol {
     display: flex;

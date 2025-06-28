@@ -1,5 +1,5 @@
 [
-    {
+  {
     "id": 1,
     "nombre": "Vela Lavanda Zen",
     "descripcion": "Vela aromática de lavanda, ideal para relajación y meditación.",
@@ -45,7 +45,7 @@
     "descripcion": "Aroma especiado y cítrico ideal para el hogar en días fríos.",
     "precio": 23000,
     "categoria": ["Velas Aromáticas"],
-    "imagen":"/images/velas/vela_6.jpg"
+    "imagen": "/images/velas/vela_6.jpg"
   },
   {
     "id": 7,
@@ -69,7 +69,7 @@
     "descripcion": "Aroma profundo y terroso para ambientes cálidos y sofisticados.",
     "precio": 25000,
     "categoria": ["Velas Aromáticas"],
-    "imagen":"/images/velas/vela_9.jpg"
+    "imagen": "/images/velas/vela_9.jpg"
   },
   {
     "id": 10,
@@ -183,7 +183,7 @@
     "categoria": ["Accesorios"],
     "imagen": "/images/aceites/aceite+horno.jpg"
   },
-    {
+  {
     "id": 24,
     "nombre": "Colgante Difusor de Aromas",
     "descripcion": "Accesorio portátil para llevar tu aroma favorito contigo todo el día.",
