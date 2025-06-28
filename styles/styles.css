@@ -161,7 +161,32 @@ body {
     text-align: center;
     padding: auto;
 }
-
+#carrito {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: flex-end;
+    width: 100%;
+    padding: 2em;
+    
+    > p {
+        font-size: 1.5em;
+        color: #d0e0e3;
+        margin: 0.5em 0;
+    }
+    > button {
+        margin: 0.5em 0;
+        padding: 0.5em 1em;
+        background: #f706ae;
+        color: #d0e0e3;
+        font-size: 1.5em;
+        line-height: 1.5;
+        text-align: center;
+        border: none;
+        border-radius: 0.5em;
+        cursor: pointer;
+    }
+}
 .btn {
     background: #f706ae;
     color: #d0e0e3;
@@ -174,7 +199,7 @@ body {
     cursor: pointer;
 }
 .detalle{
-    color: #e40fd9;
+    color: #fdfdfd;
     font-size: 1.5em;
     line-height: 1.5;
     text-align: center;
