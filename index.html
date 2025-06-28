@@ -17,13 +17,13 @@
         <main>
             <!-- Este es un ejemplo de contenedor de carrito -->
             <div  id="carrito">
-                <p><span>0</span> ítems agregados</p>
-                <p>$<span>0</span> es el total</p>
+                <p><span id="cantidadItems">0</span> ítems agregados</p>
+                <p>$<span id="totalCarrito">0</span> es el total</p>
 
                 <button>Ver carrito</button>
 
                 <!-- Estos filtros pueden ser links, botones, menu desplegable. Sugiero generarlos dinamicamente -->
-                <button id="btnLimpiar">Vaciar  carrito</button>
+                <button onclick="vaciarCarrito()" id="btnLimpiar">Vaciar carrito</button>
             </div>
             <p id="filtros"></p>
             <h2>Productos</h2>

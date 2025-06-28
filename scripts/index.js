@@ -79,7 +79,37 @@ function agregarAlCarrito(idProducto) {
                 cantidad: 1
             });
         }
+        actualizarCarrito();
     }
+}
+
+// Limpiar el contenedor del carrito
+function vaciarCarrito() {
+    carrito = [];
+    actualizarCarrito();
+}
+
+function itemsEnCarrito() {
+    let items = 0;
+    for (const item of carrito) {
+        items += item.cantidad;
+    }
+    return items;
+}
+
+function totalCarrito() {
+    let total = 0;
+    for (const item of carrito) {
+        total += item.precio * item.cantidad;
+    }
+    return total;
+}
+
+function actualizarCarrito() {
+    const cantidadItems = document.querySelector("#cantidadItems");
+    cantidadItems.innerText = itemsEnCarrito();
+    const total = document.querySelector("#totalCarrito");
+    total.innerText = totalCarrito();
 }
 
 function mostrarProductos() {
