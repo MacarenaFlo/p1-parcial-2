@@ -89,7 +89,7 @@ main {
 }
 
 body {
-    background-image: url("/images/fondo.jpg");
+    background-image: url("../images/fondo.jpg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
