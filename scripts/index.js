@@ -92,146 +92,57 @@ function mostrarFiltros() {
 
 	contenedorFiltros.appendChild(contenedorBotones);
 
-	// Contenedor para el dropdown de ordenamiento
+	// Contenedor para los botones de ordenamiento
 	const contenedorOrden = document.createElement("div");
-	contenedorOrden.setAttribute("class", "d-block gap- mb-3 align-items-center");
+	contenedorOrden.setAttribute("class", "contenedor-orden d-flex gap-2 mb-3 align-items-center justify-content-center");
 
 	const labelOrden = document.createElement("span");
 	labelOrden.innerText = "Ordenar por precio:";
 	labelOrden.setAttribute("class", "fw-bold fs-4");
+	labelOrden.setAttribute("style", "color: #d0e0e3; margin-right: 1em;");
 	contenedorOrden.appendChild(labelOrden);
 
-	const dropdownContainer = document.createElement("div");
-	dropdownContainer.setAttribute("class", "dropdown");
-
-	const botonDropdown = document.createElement("button");
-	// Usar colores similares a los botones de filtro
-	let claseBoton = "btn  dropdown-toggle";
-	if (ordenPrecio !== null) {
-		claseBoton = "btn  dropdown-toggle";
-	}
-	botonDropdown.setAttribute("class", "botonDrop" + claseBoton);
-	botonDropdown.setAttribute("type", "button");
-	botonDropdown.setAttribute("data-bs-toggle", "dropdown");
-	botonDropdown.setAttribute("aria-expanded", "false");
-
-	// Establecer el texto del botón según el orden actual
-	let textoBoton = "Sin orden";
-	if (ordenPrecio === "asc") {
-		textoBoton = "Menor a mayor ↑";
-	} else if (ordenPrecio === "desc") {
-		textoBoton = "Mayor a menor ↓";
-	}
-	botonDropdown.innerText = textoBoton;
-
-	const menuDropdown = document.createElement("ul");
-	menuDropdown.setAttribute("class", "dropdown-menu");
-	menuDropdown.setAttribute("aria-labelledby", "dropdownMenuButton");
-
-	// Opción: Sin orden
-	const itemSinOrden = document.createElement("li");
-	const linkSinOrden = document.createElement("a");
-	let claseItemSinOrden = "dropdown-item";
-	if (ordenPrecio === null) {
-		claseItemSinOrden += " active";
-	} else {
-	}
-	linkSinOrden.setAttribute("class", claseItemSinOrden);
-	linkSinOrden.setAttribute("href", "#");
-
-	linkSinOrden.innerText = "Sin orden";
-
-	linkSinOrden.addEventListener("click", (e) => {
-		e.preventDefault();
+	// Botón "Sin orden"
+	const botonSinOrden = document.createElement("button");
+	botonSinOrden.innerText = "Sin orden";
+	botonSinOrden.setAttribute(
+		"class",
+		ordenPrecio === null ? "btn btn-primary" : "btn btn-secondary",
+	);
+	botonSinOrden.addEventListener("click", () => {
 		ordenPrecio = null;
 		mostrarProductos();
 		mostrarFiltros();
 	});
-	linkSinOrden.addEventListener("mouseenter", () => {
-		if (ordenPrecio !== null) {
-			linkSinOrden.style.backgroundColor = "#f8f9fa";
-			linkSinOrden.style.color = "#212529";
-		}
-	});
-	linkSinOrden.addEventListener("mouseleave", () => {
-		if (ordenPrecio !== null) {
-			linkSinOrden.style.backgroundColor = "";
-			linkSinOrden.style.color = "#212529";
-		}
-	});
-	itemSinOrden.appendChild(linkSinOrden);
-	menuDropdown.appendChild(itemSinOrden);
+	contenedorOrden.appendChild(botonSinOrden);
 
-	const itemMenorMayor = document.createElement("li");
-	const linkMenorMayor = document.createElement("a");
-	let claseItemMenorMayor = "dropdown-item";
-	if (ordenPrecio === "asc") {
-		claseItemMenorMayor += " active";
-		linkMenorMayor.setAttribute(
-			"style",
-			"color:rgb(219, 234, 250); font-weight: 400;",
-		);
-	} else {
-		linkMenorMayor.setAttribute(
-			"style",
-			"color:rgb(219, 234, 250); font-weight: 400;",
-		);
-	}
-	linkMenorMayor.setAttribute("class", claseItemMenorMayor);
-	linkMenorMayor.setAttribute("href", "#");
-	linkMenorMayor.innerText = "Menor a mayor ↑";
-	linkMenorMayor.addEventListener("click", (e) => {
-		e.preventDefault();
+	// Botón "Menor a mayor"
+	const botonMenorMayor = document.createElement("button");
+	botonMenorMayor.innerText = "Menor a mayor ↑";
+	botonMenorMayor.setAttribute(
+		"class",
+		ordenPrecio === "asc" ? "btn btn-primary" : "btn btn-secondary",
+	);
+	botonMenorMayor.addEventListener("click", () => {
 		ordenPrecio = "asc";
 		mostrarProductos();
 		mostrarFiltros();
 	});
-	linkMenorMayor.addEventListener("mouseenter", () => {
-		if (ordenPrecio !== "asc") {
-			linkMenorMayor.style.backgroundColor = "#f8f9fa";
-			linkMenorMayor.style.color = "#212529";
-		}
-	});
-	linkMenorMayor.addEventListener("mouseleave", () => {
-		if (ordenPrecio !== "asc") {
-			linkMenorMayor.style.backgroundColor = "";
-			linkMenorMayor.style.color = "#212529";
-		}
-	});
-	itemMenorMayor.appendChild(linkMenorMayor);
-	menuDropdown.appendChild(itemMenorMayor);
+	contenedorOrden.appendChild(botonMenorMayor);
 
-	// Opción: Mayor a menor
-	const itemMayorMenor = document.createElement("li");
-	const linkMayorMenor = document.createElement("a");
-	let claseItemMayorMenor = "dropdown-item";
-	if (ordenPrecio === "desc") {
-		claseItemMayorMenor += " active";
-	} else {
-	}
-	linkMayorMenor.setAttribute("class", claseItemMayorMenor);
-	linkMayorMenor.setAttribute("href", "#");
-	linkMayorMenor.innerText = "Mayor a menor ↓";
-	linkMayorMenor.addEventListener("click", (e) => {
-		e.preventDefault();
+	// Botón "Mayor a menor"
+	const botonMayorMenor = document.createElement("button");
+	botonMayorMenor.innerText = "Mayor a menor ↓";
+	botonMayorMenor.setAttribute(
+		"class",
+		ordenPrecio === "desc" ? "btn btn-primary" : "btn btn-secondary",
+	);
+	botonMayorMenor.addEventListener("click", () => {
 		ordenPrecio = "desc";
 		mostrarProductos();
 		mostrarFiltros();
 	});
-	linkMayorMenor.addEventListener("mouseenter", () => {
-		if (ordenPrecio !== "desc") {
-		}
-	});
-	linkMayorMenor.addEventListener("mouseleave", () => {
-		if (ordenPrecio !== "desc") {
-		}
-	});
-	itemMayorMenor.appendChild(linkMayorMenor);
-	menuDropdown.appendChild(itemMayorMenor);
-
-	dropdownContainer.appendChild(botonDropdown);
-	dropdownContainer.appendChild(menuDropdown);
-	contenedorOrden.appendChild(dropdownContainer);
+	contenedorOrden.appendChild(botonMayorMenor);
 
 	contenedorFiltros.appendChild(contenedorOrden);
 }
@@ -282,10 +193,19 @@ function actualizarCarrito() {
 	const cantidadItems = document.querySelector("#cantidadItems");
 	cantidadItems.innerText = itemsEnCarrito();
 	const total = document.querySelector("#totalCarrito");
-	total.innerText = totalCarrito();
+	total.innerText = formatearPrecio(totalCarrito());
 }
 
 // Funciones para manejar localStorage del carrito
+function formatearPrecio(numero) {
+	return numero.toLocaleString('es-AR', {
+		style: 'currency',
+		currency: 'ARS',
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	});
+}
+
 function guardarCarritoEnStorage() {
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 }
@@ -329,9 +249,9 @@ function crearItemCarrito(item) {
 		"font-weight: bold; color: #f706ae; font-size: 3em;",
 	);
 	precioItem.innerHTML = `
-        <strong>$${(item.precio * item.cantidad).toFixed(2)}</strong>
+        <strong>${formatearPrecio(item.precio * item.cantidad)}</strong>
         <br>
-        <small class="text-muted">$${item.precio} c/u</small>
+        <small class="text-muted">${formatearPrecio(item.precio)} c/u</small>
     `;
 
 	const botonesItem = document.createElement("div");
@@ -395,7 +315,7 @@ function actualizarContenidoModal() {
 
 	const totalInfo = modalFooter.querySelector(".me-auto");
 	if (totalInfo) {
-		totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - $${totalCarrito().toFixed(2)}</strong>`;
+		totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - ${formatearPrecio(totalCarrito())}</strong>`;
 	}
 }
 
@@ -438,7 +358,7 @@ function crearFooterModal() {
 
 	const totalInfo = document.createElement("div");
 	totalInfo.setAttribute("class", "me-auto fs-4");
-	totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - $${totalCarrito().toFixed(2)}</strong>`;
+	totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - ${formatearPrecio(totalCarrito())}</strong>`;
 
 	const botonVaciar = crearBotonModal(
 		"Vaciar Carrito",
@@ -582,7 +502,7 @@ function mostrarProductos() {
 			"font-weight: bold; color: #f706ae; font-size: 2em; text-align: end",
 		);
 
-		precioProducto.innerText = `$${producto.precio}`;
+		precioProducto.innerText = formatearPrecio(producto.precio);
 
 		const botonAgregar = document.createElement("button");
 		botonAgregar.setAttribute("class", "btn btnModalCarrito");
@@ -698,7 +618,7 @@ function crearBodyModalProducto(producto) {
 		"font-weight: bold; color: #f706ae; font-size: 1.5em;",
 	);
 	precioDiv.innerHTML = `
-        <h3 class="precio fw-bold">$${producto.precio}</h3>
+        <h3 class="precio fw-bold">${formatearPrecio(producto.precio)}</h3>
     `;
 
 	modalBody.appendChild(imagenContainer);

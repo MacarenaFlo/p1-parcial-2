@@ -153,20 +153,22 @@ body {
 
 #carrito {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: flex-end;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	padding: 2em;
+	gap: 1em;
 
 	> p {
 		font-size: 1.5em;
 		color: #d0e0e3;
-		margin: 0.5em 0;
+		margin: 0;
+		white-space: nowrap;
 	}
 
 	> button {
-		margin: 0.5em 0;
+		margin: 0;
 		padding: 0.5em 1em;
 		background: #f706ae;
 		color: #d0e0e3;
@@ -176,6 +178,7 @@ body {
 		border: none;
 		border-radius: 0.5em;
 		cursor: pointer;
+		white-space: nowrap;
 	}
 }
 
@@ -336,11 +339,26 @@ body {
 	border: none;
 	border-radius: 0.5em;
 	cursor: pointer;
+	transition: all 0.2s ease;
 
 	&&:hover {
 		background: #f706ae;
 		color: #ffffff;
+		transform: translateY(-1px);
 	}
+}
+
+/* Estilo para botones de filtro activos/seleccionados */
+#filtros .btn-primary {
+	background: #e0006e !important;
+	color: #ffffff !important;
+	font-weight: bold;
+	box-shadow: 0 2px 4px rgba(224, 0, 110, 0.3);
+}
+
+#filtros .btn-secondary {
+	background: #fc32c9 !important;
+	color: #d0e0e3 !important;
 }
 #filtros p {
 	font-size: 0.6em;
@@ -615,12 +633,11 @@ input[type="submit"]:hover {
 	display: flex;
 	flex-direction: column;
 	align-self: center;
-	width: 90%;
-	padding: 1em;
 }
 
 #productos img {
-	width: 90%;
+	width: auto;
+    height: 20rem;
 	margin: 1em 5%;
 }
 
@@ -728,10 +745,79 @@ input[type="submit"]:hover {
 
 	#productos div {
 		width: 30%;
+        height: 55rem;
 	}
 
 	/**	Footer */
 	footer ul {
 		flex-direction: row;
 	}
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+	.contenedor-orden {
+		flex-direction: column !important;
+		align-items: center !important;
+	}
+	
+	.contenedor-orden span {
+		margin-bottom: 0.8em;
+		font-size: 1.4em;
+	}
+	
+	.contenedor-orden button {
+		font-size: 1.2em;
+		padding: 0.4em 0.8em;
+		margin: 0.1em;
+	}
+}
+
+.contenedor-orden {
+	display: flex !important;
+	flex-direction: row !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 0.5em !important;
+	margin-bottom: 1em !important;
+	width: 100% !important;
+	flex-wrap: wrap;
+}
+
+.contenedor-orden span {
+	color: #d0e0e3;
+	font-size: 1.5em;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-bottom: 0.5em;
+}
+
+.contenedor-orden button {
+	margin: 0.2em;
+	padding: 0.5em 1em;
+	font-size: 1.3em;
+	line-height: 1.5;
+	text-align: center;
+	border: none;
+	border-radius: 0.5em;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.contenedor-orden .btn-primary {
+	background: #e0006e !important;
+	color: #ffffff !important;
+	font-weight: bold;
+	box-shadow: 0 2px 4px rgba(224, 0, 110, 0.3);
+}
+
+.contenedor-orden .btn-secondary {
+	background: #fc32c9 !important;
+	color: #d0e0e3 !important;
+}
+
+.contenedor-orden .btn:hover {
+	opacity: 0.8;
+	transform: translateY(-1px);
+	transition: all 0.2s ease;
 }
