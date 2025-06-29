@@ -343,7 +343,23 @@ body {
     border-radius: 0.5em;
    
 }
+ #filtros button {
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+    background:#fc32c9;
+    color: #d0e0e3;
+    font-size: 1.5em;
+    line-height: 1.5;
+    text-align: center;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
 
+    &&:hover {
+        background: #f706ae;
+        color: #ffffff;
+    }
+}
 #filtros p {
     font-size: 0.6em;
     color: #d0e0e3;
