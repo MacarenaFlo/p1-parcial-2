@@ -100,7 +100,7 @@ main {
 }
 
 body {
-    background-image: url("/images/fondo.jpg");
+    background-image: url("./images/fondo.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -341,7 +341,6 @@ body {
     width: 100%;
     padding: 1em;
     border-radius: 0.5em;
-   
 }
  #filtros button {
     margin: 0.5em 0;
