@@ -1,219 +1,219 @@
 [
-  {
-    "id": 1,
-    "nombre": "Vela Lavanda Zen",
-    "descripcion": "Vela aromática de lavanda, ideal para relajación y meditación.",
-    "precio": 22000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_1.jpg"
-  },
-  {
-    "id": 2,
-    "nombre": "Vela Vainilla Dulce",
-    "descripcion": "Aroma cálido de vainilla que crea un ambiente acogedor y dulce.",
-    "precio": 18000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_2.jpg"
-  },
-  {
-    "id": 3,
-    "nombre": "Vela Cítrica Energía",
-    "descripcion": "Mezcla de cítricos vibrantes para revitalizar tus espacios.",
-    "precio": 20000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_3.jpg"
-  },
-  {
-    "id": 4,
-    "nombre": "Vela Menta Refrescante",
-    "descripcion": "Aroma de menta fresca que limpia el ambiente y estimula los sentidos.",
-    "precio": 25000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_4.jpg"
-  },
-  {
-    "id": 5,
-    "nombre": "Vela Rosas del Jardín",
-    "descripcion": "Fragancia floral y elegante de rosas frescas recién cortadas.",
-    "precio": 17500,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_5.jpg"
-  },
-  {
-    "id": 6,
-    "nombre": "Vela Canela & Naranja",
-    "descripcion": "Aroma especiado y cítrico ideal para el hogar en días fríos.",
-    "precio": 23000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_6.jpg"
-  },
-  {
-    "id": 7,
-    "nombre": "Vela Eucalipto Zen",
-    "descripcion": "Ideal para despejar la mente y promover la respiración profunda.",
-    "precio": 22000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_7.jpg"
-  },
-  {
-    "id": 8,
-    "nombre": "Vela Coco Tropical",
-    "descripcion": "Fragancia exótica de coco que transporta a una playa paradisíaca.",
-    "precio": 19600,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_8.jpg"
-  },
-  {
-    "id": 9,
-    "nombre": "Vela Sándalo Nocturno",
-    "descripcion": "Aroma profundo y terroso para ambientes cálidos y sofisticados.",
-    "precio": 25000,
-    "categorias": ["Velas Aromáticas"],
-    "imagen": "./images/velas/vela_9.jpg"
-  },
-  {
-    "id": 10,
-    "nombre": "Difusor Lavanda Relax",
-    "descripcion": "Difusor con esencia de lavanda para promover la calma y el descanso.",
-    "precio": 18999,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_1.jpg"
-  },
-  {
-    "id": 11,
-    "nombre": "Difusor Cítrico Vital",
-    "descripcion": "Fragancia de naranja, limón y lima para energizar cualquier ambiente.",
-    "precio": 17150,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_2.jpg"
-  },
-  {
-    "id": 12,
-    "nombre": "Difusor Vainilla & Ámbar",
-    "descripcion": "Combinación dulce y cálida para una atmósfera acogedora.",
-    "precio": 19250,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_vainilla.jpg"
-  },
-  {
-    "id": 13,
-    "nombre": "Difusor Floral Sakura",
-    "descripcion": "Aroma floral suave inspirado en los cerezos en flor japoneses.",
-    "precio": 20000,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_5.jpg"
-  },
-  {
-    "id": 14,
-    "nombre": "Difusor Eucalipto",
-    "descripcion": "Fragancia herbal refrescante que purifica el ambiente.",
-    "precio": 16750,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_6.jpg"
-  },
-  {
-    "id": 15,
-    "nombre": "Difusor Canela & Manzana",
-    "descripcion": "Notas cálidas y especiadas ideales para otoño e invierno.",
-    "precio": 18300,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_7.jpg"
-  },
-  {
-    "id": 16,
-    "nombre": "Difusor Ocean Breeze",
-    "descripcion": "Fragancia fresca y marina para un efecto purificador.",
-    "precio": 17900,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_8.jpg"
-  },
-  {
-    "id": 17,
-    "nombre": "Difusor Coco & Piña",
-    "descripcion": "Aroma tropical que evoca vacaciones en la playa.",
-    "precio": 19000,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_9.jpg"
-  },
-  {
-    "id": 18,
-    "nombre": "Difusor Sándalo-Cedro",
-    "descripcion": "Aroma amaderado y elegante que transmite serenidad.",
-    "precio": 20500,
-    "categorias": ["Difusores Aromáticos"],
-    "imagen": "./images/difusores/difusor_4.jpg"
-  },
-  {
-    "id": 19,
-    "nombre": "Aceite Esencial de Lavanda",
-    "descripcion": "Aceite relajante 100% natural, ideal para difusores y masajes.",
-    "precio": 8999,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/aceites.jpg"
-  },
-  {
-    "id": 20,
-    "nombre": "Aceite Esencial de Eucalipto",
-    "descripcion": "Aroma fresco con propiedades purificantes para ambientes.",
-    "precio": 9500,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/aceites.jpg"
-  },
-  {
-    "id": 21,
-    "nombre": "Aceite Esencial de Naranja",
-    "descripcion": "Fragancia cítrica energizante para revitalizar espacios.",
-    "precio": 7750,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/aceites.jpg"
-  },
-  {
-    "id": 22,
-    "nombre": "Difusor Ultrasónico de Aromas",
-    "descripcion": "Difusor eléctrico con luz LED, ideal para esparcir aceites esenciales.",
-    "precio": 89999,
-    "categorias": ["Accesorios"],
-    "imagen": "./images/aceites/aromatizador.jpg"
-  },
-  {
-    "id": 23,
-    "nombre": "Porta Aceites de Madera Artesanal",
-    "descripcion": "Soporte artesanal para 6 frascos de aceites esenciales.",
-    "precio": 62000,
-    "categorias": ["Accesorios"],
-    "imagen": "./images/aceites/aceite+horno.jpg"
-  },
-  {
-    "id": 24,
-    "nombre": "Colgante Difusor de Aromas",
-    "descripcion": "Accesorio portátil para llevar tu aroma favorito contigo todo el día.",
-    "precio": 34500,
-    "categorias": ["Accesorios"],
-    "imagen": "./images/aceites/colgante.png.jpg"
-  },
-  {
-    "id": 25,
-    "nombre": "Roll-on de Aceite de Árbol",
-    "descripcion": "Aceite listo para usar en piel, con propiedades antibacterianas.",
-    "precio": 16900,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/roll-on.jpg"
-  },
-  {
-    "id": 26,
-    "nombre": "Aceite Esencial de Menta",
-    "descripcion": "Estimulante natural que ayuda a despejar la mente.",
-    "precio": 8250,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/aceites.jpg"
-  },
+	{
+		"id": 1,
+		"nombre": "Vela Lavanda Zen",
+		"descripcion": "Vela aromática de lavanda, ideal para relajación y meditación.",
+		"precio": 22000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_1.jpg"
+	},
+	{
+		"id": 2,
+		"nombre": "Vela Vainilla Dulce",
+		"descripcion": "Aroma cálido de vainilla que crea un ambiente acogedor y dulce.",
+		"precio": 18000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_2.jpg"
+	},
+	{
+		"id": 3,
+		"nombre": "Vela Cítrica Energía",
+		"descripcion": "Mezcla de cítricos vibrantes para revitalizar tus espacios.",
+		"precio": 20000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_3.jpg"
+	},
+	{
+		"id": 4,
+		"nombre": "Vela Menta Refrescante",
+		"descripcion": "Aroma de menta fresca que limpia el ambiente y estimula los sentidos.",
+		"precio": 25000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_4.jpg"
+	},
+	{
+		"id": 5,
+		"nombre": "Vela Rosas del Jardín",
+		"descripcion": "Fragancia floral y elegante de rosas frescas recién cortadas.",
+		"precio": 17500,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_5.jpg"
+	},
+	{
+		"id": 6,
+		"nombre": "Vela Canela & Naranja",
+		"descripcion": "Aroma especiado y cítrico ideal para el hogar en días fríos.",
+		"precio": 23000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_6.jpg"
+	},
+	{
+		"id": 7,
+		"nombre": "Vela Eucalipto Zen",
+		"descripcion": "Ideal para despejar la mente y promover la respiración profunda.",
+		"precio": 22000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_7.jpg"
+	},
+	{
+		"id": 8,
+		"nombre": "Vela Coco Tropical",
+		"descripcion": "Fragancia exótica de coco que transporta a una playa paradisíaca.",
+		"precio": 19600,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_8.jpg"
+	},
+	{
+		"id": 9,
+		"nombre": "Vela Sándalo Nocturno",
+		"descripcion": "Aroma profundo y terroso para ambientes cálidos y sofisticados.",
+		"precio": 25000,
+		"categorias": ["Velas Aromáticas"],
+		"imagen": "./images/velas/vela_9.jpg"
+	},
+	{
+		"id": 10,
+		"nombre": "Difusor Lavanda Relax",
+		"descripcion": "Difusor con esencia de lavanda para promover la calma y el descanso.",
+		"precio": 18999,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_1.jpg"
+	},
+	{
+		"id": 11,
+		"nombre": "Difusor Cítrico Vital",
+		"descripcion": "Fragancia de naranja, limón y lima para energizar cualquier ambiente.",
+		"precio": 17150,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_2.jpg"
+	},
+	{
+		"id": 12,
+		"nombre": "Difusor Vainilla & Ámbar",
+		"descripcion": "Combinación dulce y cálida para una atmósfera acogedora.",
+		"precio": 19250,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_vainilla.jpg"
+	},
+	{
+		"id": 13,
+		"nombre": "Difusor Floral Sakura",
+		"descripcion": "Aroma floral suave inspirado en los cerezos en flor japoneses.",
+		"precio": 20000,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_5.jpg"
+	},
+	{
+		"id": 14,
+		"nombre": "Difusor Eucalipto",
+		"descripcion": "Fragancia herbal refrescante que purifica el ambiente.",
+		"precio": 16750,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_6.jpg"
+	},
+	{
+		"id": 15,
+		"nombre": "Difusor Canela & Manzana",
+		"descripcion": "Notas cálidas y especiadas ideales para otoño e invierno.",
+		"precio": 18300,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_7.jpg"
+	},
+	{
+		"id": 16,
+		"nombre": "Difusor Ocean Breeze",
+		"descripcion": "Fragancia fresca y marina para un efecto purificador.",
+		"precio": 17900,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_8.jpg"
+	},
+	{
+		"id": 17,
+		"nombre": "Difusor Coco & Piña",
+		"descripcion": "Aroma tropical que evoca vacaciones en la playa.",
+		"precio": 19000,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_9.jpg"
+	},
+	{
+		"id": 18,
+		"nombre": "Difusor Sándalo-Cedro",
+		"descripcion": "Aroma amaderado y elegante que transmite serenidad.",
+		"precio": 20500,
+		"categorias": ["Difusores Aromáticos"],
+		"imagen": "./images/difusores/difusor_4.jpg"
+	},
+	{
+		"id": 19,
+		"nombre": "Aceite Esencial de Lavanda",
+		"descripcion": "Aceite relajante 100% natural, ideal para difusores y masajes.",
+		"precio": 8999,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/aceites.jpg"
+	},
+	{
+		"id": 20,
+		"nombre": "Aceite Esencial de Eucalipto",
+		"descripcion": "Aroma fresco con propiedades purificantes para ambientes.",
+		"precio": 9500,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/aceites.jpg"
+	},
+	{
+		"id": 21,
+		"nombre": "Aceite Esencial de Naranja",
+		"descripcion": "Fragancia cítrica energizante para revitalizar espacios.",
+		"precio": 7750,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/aceites.jpg"
+	},
+	{
+		"id": 22,
+		"nombre": "Difusor Ultrasónico de Aromas",
+		"descripcion": "Difusor eléctrico con luz LED, ideal para esparcir aceites esenciales.",
+		"precio": 89999,
+		"categorias": ["Accesorios"],
+		"imagen": "./images/aceites/aromatizador.jpg"
+	},
+	{
+		"id": 23,
+		"nombre": "Porta Aceites de Madera Artesanal",
+		"descripcion": "Soporte artesanal para 6 frascos de aceites esenciales.",
+		"precio": 62000,
+		"categorias": ["Accesorios"],
+		"imagen": "./images/aceites/aceite+horno.jpg"
+	},
+	{
+		"id": 24,
+		"nombre": "Colgante Difusor de Aromas",
+		"descripcion": "Accesorio portátil para llevar tu aroma favorito contigo todo el día.",
+		"precio": 34500,
+		"categorias": ["Accesorios"],
+		"imagen": "./images/aceites/colgante.png.jpg"
+	},
+	{
+		"id": 25,
+		"nombre": "Roll-on de Aceite de Árbol",
+		"descripcion": "Aceite listo para usar en piel, con propiedades antibacterianas.",
+		"precio": 16900,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/roll-on.jpg"
+	},
+	{
+		"id": 26,
+		"nombre": "Aceite Esencial de Menta",
+		"descripcion": "Estimulante natural que ayuda a despejar la mente.",
+		"precio": 8250,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/aceites.jpg"
+	},
 
-  {
-    "id": 27,
-    "nombre": "Aceite Esencial de Romero",
-    "descripcion": "Aroma herbáceo que estimula la concentración y la memoria.",
-    "precio": 9100,
-    "categorias": ["Aceites Aromatizantes"],
-    "imagen": "./images/aceites/aceites.jpg"
-  }
+	{
+		"id": 27,
+		"nombre": "Aceite Esencial de Romero",
+		"descripcion": "Aroma herbáceo que estimula la concentración y la memoria.",
+		"precio": 9100,
+		"categorias": ["Aceites Aromatizantes"],
+		"imagen": "./images/aceites/aceites.jpg"
+	}
 ]
