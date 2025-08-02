@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "categoria": "Aceites Aromatizantes",
+        "titulo": "🌿 ¡Oferta Especial en Aceites!",
+        "descripcion": "25% OFF en aceites esenciales",
+        "detalle": "Relajación y bienestar al mejor precio"
+    },
+    {
+        "id": 2,
+        "categoria": "Velas Aromáticas",
+        "titulo": "🕯️ ¡Promoción en Velas!",
+        "descripcion": "Compra 2 y llévate 3",
+        "detalle": "Crea el ambiente perfecto en tu hogar"
+    },
+    {
+        "id": 3,
+        "categoria": "Difusores Aromáticos",
+        "titulo": "💨 ¡Oferta en Difusores!",
+        "descripcion": "30% OFF + envío gratis",
+        "detalle": "Transforma tu espacio con aromas únicos"
+    },
+    {
+        "id": 4,
+        "categoria": "Accesorios",
+        "titulo": "🛍️ ¡Ofertas en Accesorios!",
+        "descripcion": "20% OFF en accesorios aromáticos",
+        "detalle": "Complementa tu experiencia sensorial"
+    },
+    {
+        "id": 5,
+        "categoria": "general",
+        "titulo": "✨ ¡Ofertas en Toda la Tienda!",
+        "descripcion": "Descuentos especiales en productos seleccionados",
+        "detalle": "Aprovecha nuestras mejores promociones"
+    }
+]
