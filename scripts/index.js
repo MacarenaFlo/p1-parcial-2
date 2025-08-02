@@ -7,6 +7,7 @@
 // Podria levantar los productos de un JSON o directamente estar escritos aca
 
 let productos = [];
+let ofertas = [];
 let categorias = [];
 let carrito = [];
 let filtroSeleccionado = null;
@@ -15,6 +16,7 @@ let ordenPrecio = null;
 document.addEventListener("DOMContentLoaded", () => {
 	cargarCarritoDesdeStorage();
 
+	// Cargar productos
 	fetch("./productos.json")
 		.then((response) => response.json())
 		.then((data) => {
@@ -33,6 +35,27 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 			mostrarProductos();
 			mostrarFiltros();
+		});
+
+	// Cargar ofertas
+	fetch("./ofertas.json")
+		.then((response) => response.json())
+		.then((data) => {
+			data.forEach((item) => {
+				if (!ofertas.some((o) => o.id === item.id)) {
+					const oferta = new Oferta(
+						item.id,
+						item.categoria,
+						item.titulo,
+						item.descripcion,
+						item.detalle
+					);
+					ofertas.push(oferta);
+				}
+			});
+		})
+		.catch((error) => {
+			console.error("Error al cargar ofertas:", error);
 		});
 });
 
@@ -67,9 +90,15 @@ function mostrarFiltros() {
 		filtroSeleccionado === null ? "btn btn-primary" : "btn btn-secondary",
 	);
 	botonTodos.addEventListener("click", () => {
+		const categoriaAnterior = filtroSeleccionado;
 		filtroSeleccionado = null;
 		mostrarProductos();
 		mostrarFiltros();
+		
+	
+		if (categoriaAnterior !== null) {
+			mostrarOfertaEspecial("general");
+		}
 	});
 	contenedorBotones.appendChild(botonTodos);
 
@@ -83,9 +112,13 @@ function mostrarFiltros() {
 				: "btn btn-secondary",
 		);
 		boton.addEventListener("click", () => {
+			const categoriaAnterior = filtroSeleccionado;
 			filtroSeleccionado = categoria;
 			mostrarProductos();
 			mostrarFiltros();
+			
+			
+			mostrarOfertaEspecial(categoria);
 		});
 		contenedorBotones.appendChild(boton);
 	});
@@ -147,6 +180,58 @@ function mostrarFiltros() {
 	contenedorFiltros.appendChild(contenedorOrden);
 }
 
+function mostrarOfertaEspecial(categoria) {
+	const oferta = ofertas.find(o => o.categoria.toLowerCase() === categoria.toLowerCase());
+	
+	if (!oferta) return;
+	
+	// Crear el banner de oferta
+	crearBannerOferta(oferta);
+}
+
+function crearBannerOferta(oferta) {
+	
+	const bannerExistente = document.querySelector("#bannerOferta");
+	if (bannerExistente) {
+		bannerExistente.remove();
+	}
+	
+	// Crear el banner
+	const banner = document.createElement("div");
+	banner.setAttribute("id", "bannerOferta");
+	banner.setAttribute("class", "banner-oferta");
+	
+	banner.innerHTML = `
+		<h4 class="banner-titulo">${oferta.titulo}</h4>
+		<p class="banner-descripcion">${oferta.descripcion}</p>
+		<p class="banner-detalle">${oferta.detalle}</p>
+	`;
+	
+	
+	document.body.appendChild(banner);
+	
+	setTimeout(() => {
+		cerrarBannerOferta();
+	}, 10000);
+}
+
+function cerrarBannerOferta() {
+	const banner = document.querySelector("#bannerOferta");
+	if (banner) {
+		banner.style.opacity = "0";
+		banner.style.transform = "translateX(100%)";
+		banner.style.transition = "all 0.3s ease";
+		setTimeout(() => {
+			if (banner.parentNode) {
+				banner.remove();
+			}
+		}, 300);
+	}
+}
+
+
+window.cerrarBannerOferta = cerrarBannerOferta;
+
 function agregarAlCarrito(idProducto) {
 	const producto = productos.find((p) => p.id === idProducto);
 	if (producto) {
@@ -158,6 +243,7 @@ function agregarAlCarrito(idProducto) {
 				id: producto.id,
 				nombre: producto.nombre,
 				precio: producto.precio,
+				imagen: producto.imagen,
 				cantidad: 1,
 			});
 		}
@@ -196,7 +282,7 @@ function actualizarCarrito() {
 	total.innerText = formatearPrecio(totalCarrito());
 }
 
-// Funciones para manejar localStorage del carrito
+
 function formatearPrecio(numero) {
 	return numero.toLocaleString('es-AR', {
 		style: 'currency',
@@ -224,7 +310,7 @@ function finalizarCompra() {
 		return;
 	}
 
-	// Cerrar el modal del carrito
+	
 	const modalCarritoInstance = bootstrap.Modal.getInstance(document.querySelector("#modalCarrito"));
 	if (modalCarritoInstance) {
 		modalCarritoInstance.hide();
@@ -238,15 +324,15 @@ function procesarPago(datosTarjeta) {
 	const total = totalCarrito();
 	const cantidadItems = itemsEnCarrito();
 	
-	// Crear datos para el modal de confirmación
+	
 	const datosCompra = {
-		items: [...carrito], // Copia del carrito antes de vaciarlo
+		items: [...carrito], 
 		total: total,
 		cantidadItems: cantidadItems,
 		tarjeta: datosTarjeta
 	};
 	
-	// Vaciar carrito después de la compra
+	
 	vaciarCarrito();
 	
 	// Mostrar modal de confirmación de compra
@@ -255,7 +341,7 @@ function procesarPago(datosTarjeta) {
 
 function crearHeaderModalConfirmacion() {
 	const modalHeader = document.createElement("div");
-	modalHeader.setAttribute("class", "modal-header bg-success text-white");
+	modalHeader.setAttribute("class", "modal-header button text-white");
 
 	const modalTitle = document.createElement("h5");
 	modalTitle.setAttribute("class", "modal-title");
@@ -281,7 +367,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 	const modalBody = document.createElement("div");
 	modalBody.setAttribute("class", "modal-body");
 
-	// Mensaje de agradecimiento
+
 	const mensajeDiv = document.createElement("div");
 	mensajeDiv.setAttribute("class", "text-center mb-4");
 	mensajeDiv.innerHTML = `
@@ -289,7 +375,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 		<p class="text-muted">Su pedido ha sido procesado exitosamente.</p>
 	`;
 
-	// Resumen de productos
+	
 	const resumenDiv = document.createElement("div");
 	resumenDiv.setAttribute("class", "mb-4");
 	
@@ -315,7 +401,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 		productosDiv.appendChild(itemDiv);
 	});
 
-	// Total y información de pago
+	
 	const totalDiv = document.createElement("div");
 	totalDiv.setAttribute("class", "mt-4 p-3 bg-light rounded");
 	totalDiv.innerHTML = `
@@ -487,7 +573,7 @@ function crearBodyModalPago() {
 	resumenDiv.appendChild(resumenTitle);
 	resumenDiv.appendChild(resumenContent);
 
-	// Formulario de tarjeta
+	
 	const form = document.createElement("form");
 	form.setAttribute("id", "formPago");
 	
@@ -517,7 +603,7 @@ function crearBodyModalPago() {
 		<div id="erroresPago" class="alert alert-danger d-none"></div>
 	`;
 
-	// Agregar formato automático al número de tarjeta
+	
 	const inputNumero = form.querySelector("#numeroTarjeta");
 	inputNumero.addEventListener("input", (e) => {
 		let valor = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
@@ -525,7 +611,7 @@ function crearBodyModalPago() {
 		e.target.value = valor;
 	});
 
-	// Agregar formato automático a la fecha
+
 	const inputFecha = form.querySelector("#fechaVencimiento");
 	inputFecha.addEventListener("input", (e) => {
 		let valor = e.target.value.replace(/\D/g, '');
@@ -535,7 +621,7 @@ function crearBodyModalPago() {
 		e.target.value = valor;
 	});
 
-	// Solo números en CVV
+	
 	const inputCvv = form.querySelector("#cvv");
 	inputCvv.addEventListener("input", (e) => {
 		e.target.value = e.target.value.replace(/\D/g, '');
@@ -552,7 +638,7 @@ function crearFooterModalPago() {
 
 	const botonCancelar = document.createElement("button");
 	botonCancelar.setAttribute("type", "button");
-	botonCancelar.setAttribute("class", "btn btn-secondary");
+	botonCancelar.setAttribute("class", "btnModalCarrito btn");
 	botonCancelar.innerText = "Cancelar";
 	botonCancelar.addEventListener("click", () => {
 		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalPago"));
@@ -563,7 +649,7 @@ function crearFooterModalPago() {
 
 	const botonPagar = document.createElement("button");
 	botonPagar.setAttribute("type", "button");
-	botonPagar.setAttribute("class", "btn btn-success");
+	botonPagar.setAttribute("class", "btnModalCarrito btn");
 	botonPagar.innerText = `Pagar ${formatearPrecio(totalCarrito())}`;
 	botonPagar.addEventListener("click", () => {
 		const form = document.querySelector("#formPago");
@@ -586,7 +672,7 @@ function crearFooterModalPago() {
 
 		erroresDiv.classList.add('d-none');
 		
-		// Cerrar modal de pago
+		
 		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalPago"));
 		if (modalInstance) {
 			modalInstance.hide();
@@ -635,7 +721,7 @@ function crearModalPago() {
 function mostrarModalPago() {
 	const modal = crearModalPago();
 	const bootstrapModal = new bootstrap.Modal(modal, {
-		backdrop: false, // Sin fondo oscuro, igual que el modal del carrito
+		backdrop: false, 
 		keyboard: true
 	});
 	bootstrapModal.show();
@@ -749,7 +835,7 @@ function actualizarContenidoModal() {
 			botonFinalizarCompra.setAttribute("class", "btn btn-secondary");
 		} else {
 			botonFinalizarCompra.removeAttribute("disabled");
-			botonFinalizarCompra.setAttribute("class", "btn btn-success");
+			botonFinalizarCompra.setAttribute("class", "btnModalCarrito btn");
 		}
 	}
 }
@@ -807,7 +893,7 @@ function crearFooterModal() {
 
 	const botonFinalizarCompra = crearBotonModal(
 		"Finalizar Compra",
-		"btn btn-success",
+		"btnModalCarrito btn",
 		() => {
 			finalizarCompra();
 		},
