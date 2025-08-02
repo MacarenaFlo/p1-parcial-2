@@ -218,6 +218,429 @@ function cargarCarritoDesdeStorage() {
 	}
 }
 
+function finalizarCompra() {
+	if (carrito.length === 0) {
+		alert("El carrito está vacío. Agrega productos antes de finalizar la compra.");
+		return;
+	}
+
+	// Cerrar el modal del carrito
+	const modalCarritoInstance = bootstrap.Modal.getInstance(document.querySelector("#modalCarrito"));
+	if (modalCarritoInstance) {
+		modalCarritoInstance.hide();
+	}
+
+	// Mostrar modal de pago
+	mostrarModalPago();
+}
+
+function procesarPago(datosTarjeta) {
+	const total = totalCarrito();
+	const cantidadItems = itemsEnCarrito();
+	
+	// Crear datos para el modal de confirmación
+	const datosCompra = {
+		items: [...carrito], // Copia del carrito antes de vaciarlo
+		total: total,
+		cantidadItems: cantidadItems,
+		tarjeta: datosTarjeta
+	};
+	
+	// Vaciar carrito después de la compra
+	vaciarCarrito();
+	
+	// Mostrar modal de confirmación de compra
+	mostrarModalConfirmacion(datosCompra);
+}
+
+function crearHeaderModalConfirmacion() {
+	const modalHeader = document.createElement("div");
+	modalHeader.setAttribute("class", "modal-header bg-success text-white");
+
+	const modalTitle = document.createElement("h5");
+	modalTitle.setAttribute("class", "modal-title");
+	modalTitle.setAttribute("style", "font-weight: bold; font-size: 1.8em;");
+	modalTitle.innerHTML = "✓ ¡Compra Exitosa!";
+
+	const botonCerrar = document.createElement("button");
+	botonCerrar.setAttribute("type", "button");
+	botonCerrar.setAttribute("class", "btn-close btn-close-white");
+	botonCerrar.addEventListener("click", () => {
+		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalConfirmacion"));
+		if (modalInstance) {
+			modalInstance.hide();
+		}
+	});
+
+	modalHeader.appendChild(modalTitle);
+	modalHeader.appendChild(botonCerrar);
+	return modalHeader;
+}
+
+function crearBodyModalConfirmacion(datosCompra) {
+	const modalBody = document.createElement("div");
+	modalBody.setAttribute("class", "modal-body");
+
+	// Mensaje de agradecimiento
+	const mensajeDiv = document.createElement("div");
+	mensajeDiv.setAttribute("class", "text-center mb-4");
+	mensajeDiv.innerHTML = `
+		<h4 class="text-success mb-3">¡Gracias por su compra!</h4>
+		<p class="text-muted">Su pedido ha sido procesado exitosamente.</p>
+	`;
+
+	// Resumen de productos
+	const resumenDiv = document.createElement("div");
+	resumenDiv.setAttribute("class", "mb-4");
+	
+	const resumenTitle = document.createElement("h6");
+	resumenTitle.setAttribute("class", "fw-bold mb-3 border-bottom pb-2");
+	resumenTitle.innerText = "Resumen de tu pedido:";
+	
+	const productosDiv = document.createElement("div");
+	productosDiv.setAttribute("class", "mb-3");
+	
+	datosCompra.items.forEach((item) => {
+		const itemDiv = document.createElement("div");
+		itemDiv.setAttribute("class", "d-flex justify-content-between align-items-center py-2 border-bottom");
+		itemDiv.innerHTML = `
+			<div>
+				<h6 class="mb-1">${item.nombre}</h6>
+				<small class="text-muted">Cantidad: ${item.cantidad} x ${formatearPrecio(item.precio)}</small>
+			</div>
+			<div class="text-end">
+				<strong class="text-success">${formatearPrecio(item.precio * item.cantidad)}</strong>
+			</div>
+		`;
+		productosDiv.appendChild(itemDiv);
+	});
+
+	// Total y información de pago
+	const totalDiv = document.createElement("div");
+	totalDiv.setAttribute("class", "mt-4 p-3 bg-light rounded");
+	totalDiv.innerHTML = `
+		<div class="d-flex justify-content-between mb-2">
+			<span class="fw-bold">Total de items:</span>
+			<span class="fw-bold">${datosCompra.cantidadItems}</span>
+		</div>
+		<div class="d-flex justify-content-between mb-2">
+			<span class="fw-bold">Total pagado:</span>
+			<span class="fw-bold text-success fs-5">${formatearPrecio(datosCompra.total)}</span>
+		</div>
+		<div class="d-flex justify-content-between">
+			<span class="text-muted">Tarjeta utilizada:</span>
+			<span class="text-muted">**** **** **** ${datosCompra.tarjeta.numero.slice(-4)}</span>
+		</div>
+	`;
+
+	resumenDiv.appendChild(resumenTitle);
+	resumenDiv.appendChild(productosDiv);
+
+	modalBody.appendChild(mensajeDiv);
+	modalBody.appendChild(resumenDiv);
+	modalBody.appendChild(totalDiv);
+	return modalBody;
+}
+
+function crearFooterModalConfirmacion() {
+	const modalFooter = document.createElement("div");
+	modalFooter.setAttribute("class", "modal-footer");
+
+	const botonCerrar = document.createElement("button");
+	botonCerrar.setAttribute("type", "button");
+	botonCerrar.setAttribute("class", "btn btn-success");
+	botonCerrar.innerText = "Continuar";
+	botonCerrar.addEventListener("click", () => {
+		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalConfirmacion"));
+		if (modalInstance) {
+			modalInstance.hide();
+		}
+	});
+
+	modalFooter.appendChild(botonCerrar);
+	return modalFooter;
+}
+
+function crearModalConfirmacion(datosCompra) {
+	const modalExistente = document.querySelector("#modalConfirmacion");
+	if (modalExistente) {
+		const modalInstance = bootstrap.Modal.getInstance(modalExistente);
+		if (modalInstance) {
+			modalInstance.dispose();
+		}
+		modalExistente.remove();
+	}
+
+	const modal = document.createElement("div");
+	modal.setAttribute("id", "modalConfirmacion");
+	modal.setAttribute("class", "modal fade");
+	modal.setAttribute("tabindex", "-1");
+
+	const modalDialog = document.createElement("div");
+	modalDialog.setAttribute("class", "modal-dialog modal-lg");
+
+	const modalContent = document.createElement("div");
+	modalContent.setAttribute("class", "modal-content");
+
+	modalContent.appendChild(crearHeaderModalConfirmacion());
+	modalContent.appendChild(crearBodyModalConfirmacion(datosCompra));
+	modalContent.appendChild(crearFooterModalConfirmacion());
+	modalDialog.appendChild(modalContent);
+	modal.appendChild(modalDialog);
+
+	document.body.appendChild(modal);
+	return modal;
+}
+
+function mostrarModalConfirmacion(datosCompra) {
+	const modal = crearModalConfirmacion(datosCompra);
+	const bootstrapModal = new bootstrap.Modal(modal, {
+		backdrop: false,
+		keyboard: true
+	});
+	bootstrapModal.show();
+}
+
+function validarTarjeta(datosTarjeta) {
+	const errores = [];
+	
+	// Validar número de tarjeta (16 dígitos)
+	if (!datosTarjeta.numero || datosTarjeta.numero.replace(/\s/g, '').length !== 16) {
+		errores.push("El número de tarjeta debe tener 16 dígitos");
+	}
+	
+	// Validar nombre (no vacío)
+	if (!datosTarjeta.nombre || datosTarjeta.nombre.trim().length < 2) {
+		errores.push("El nombre del titular es requerido");
+	}
+	
+	// Validar fecha de vencimiento
+	if (!datosTarjeta.vencimiento || !datosTarjeta.vencimiento.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+		errores.push("La fecha de vencimiento debe tener formato MM/AA");
+	} else {
+		const [mes, año] = datosTarjeta.vencimiento.split('/');
+		const fechaActual = new Date();
+		const añoActual = fechaActual.getFullYear() % 100;
+		const mesActual = fechaActual.getMonth() + 1;
+		
+		if (parseInt(año) < añoActual || (parseInt(año) === añoActual && parseInt(mes) < mesActual)) {
+			errores.push("La tarjeta está vencida");
+		}
+	}
+	
+	// Validar CVV (3 dígitos)
+	if (!datosTarjeta.cvv || !datosTarjeta.cvv.match(/^\d{3}$/)) {
+		errores.push("El CVV debe tener 3 dígitos");
+	}
+	
+	return errores;
+}
+
+function crearHeaderModalPago() {
+	const modalHeader = document.createElement("div");
+	modalHeader.setAttribute("class", "modal-header");
+
+	const modalTitle = document.createElement("h5");
+	modalTitle.setAttribute("class", "modal-title");
+	modalTitle.setAttribute("style", "font-weight: bold; color: #f706ae; font-size: 1.8em;");
+	modalTitle.innerText = "Datos de Pago";
+
+	const botonCerrar = document.createElement("button");
+	botonCerrar.setAttribute("type", "button");
+	botonCerrar.setAttribute("class", "btn-close");
+	botonCerrar.addEventListener("click", () => {
+		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalPago"));
+		if (modalInstance) {
+			modalInstance.hide();
+		}
+	});
+
+	modalHeader.appendChild(modalTitle);
+	modalHeader.appendChild(botonCerrar);
+	return modalHeader;
+}
+
+function crearBodyModalPago() {
+	const modalBody = document.createElement("div");
+	modalBody.setAttribute("class", "modal-body");
+
+	// Resumen de la compra
+	const resumenDiv = document.createElement("div");
+	resumenDiv.setAttribute("class", "mb-4 p-3 bg-light rounded");
+	
+	const resumenTitle = document.createElement("h6");
+	resumenTitle.setAttribute("class", "fw-bold mb-2");
+	resumenTitle.innerText = "Resumen de tu compra:";
+	
+	const resumenContent = document.createElement("div");
+	resumenContent.innerHTML = `
+		<div class="d-flex justify-content-between">
+			<span>Total de productos:</span>
+			<span class="fw-bold">${itemsEnCarrito()} items</span>
+		</div>
+		<div class="d-flex justify-content-between">
+			<span>Total a pagar:</span>
+			<span class="fw-bold text-success fs-5">${formatearPrecio(totalCarrito())}</span>
+		</div>
+	`;
+	
+	resumenDiv.appendChild(resumenTitle);
+	resumenDiv.appendChild(resumenContent);
+
+	// Formulario de tarjeta
+	const form = document.createElement("form");
+	form.setAttribute("id", "formPago");
+	
+	form.innerHTML = `
+		<div class="mb-3">
+			<label for="numeroTarjeta" class="form-label fw-bold">Número de Tarjeta</label>
+			<input type="text" class="form-control" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19">
+			<small class="text-muted">16 dígitos</small>
+		</div>
+		
+		<div class="mb-3">
+			<label for="nombreTitular" class="form-label fw-bold">Nombre del Titular</label>
+			<input type="text" class="form-control" id="nombreTitular" placeholder="Como aparece en la tarjeta">
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label for="fechaVencimiento" class="form-label fw-bold">Fecha de Vencimiento</label>
+				<input type="text" class="form-control" id="fechaVencimiento" placeholder="MM/AA" maxlength="5">
+			</div>
+			<div class="col-md-6 mb-3">
+				<label for="cvv" class="form-label fw-bold">CVV</label>
+				<input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3">
+			</div>
+		</div>
+		
+		<div id="erroresPago" class="alert alert-danger d-none"></div>
+	`;
+
+	// Agregar formato automático al número de tarjeta
+	const inputNumero = form.querySelector("#numeroTarjeta");
+	inputNumero.addEventListener("input", (e) => {
+		let valor = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+		valor = valor.replace(/(\d{4})(?=\d)/g, '$1 ');
+		e.target.value = valor;
+	});
+
+	// Agregar formato automático a la fecha
+	const inputFecha = form.querySelector("#fechaVencimiento");
+	inputFecha.addEventListener("input", (e) => {
+		let valor = e.target.value.replace(/\D/g, '');
+		if (valor.length >= 2) {
+			valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
+		}
+		e.target.value = valor;
+	});
+
+	// Solo números en CVV
+	const inputCvv = form.querySelector("#cvv");
+	inputCvv.addEventListener("input", (e) => {
+		e.target.value = e.target.value.replace(/\D/g, '');
+	});
+
+	modalBody.appendChild(resumenDiv);
+	modalBody.appendChild(form);
+	return modalBody;
+}
+
+function crearFooterModalPago() {
+	const modalFooter = document.createElement("div");
+	modalFooter.setAttribute("class", "modal-footer");
+
+	const botonCancelar = document.createElement("button");
+	botonCancelar.setAttribute("type", "button");
+	botonCancelar.setAttribute("class", "btn btn-secondary");
+	botonCancelar.innerText = "Cancelar";
+	botonCancelar.addEventListener("click", () => {
+		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalPago"));
+		if (modalInstance) {
+			modalInstance.hide();
+		}
+	});
+
+	const botonPagar = document.createElement("button");
+	botonPagar.setAttribute("type", "button");
+	botonPagar.setAttribute("class", "btn btn-success");
+	botonPagar.innerText = `Pagar ${formatearPrecio(totalCarrito())}`;
+	botonPagar.addEventListener("click", () => {
+		const form = document.querySelector("#formPago");
+		const erroresDiv = form.querySelector("#erroresPago");
+		
+		const datosTarjeta = {
+			numero: form.querySelector("#numeroTarjeta").value.replace(/\s/g, ''),
+			nombre: form.querySelector("#nombreTitular").value.trim(),
+			vencimiento: form.querySelector("#fechaVencimiento").value,
+			cvv: form.querySelector("#cvv").value
+		};
+
+		const errores = validarTarjeta(datosTarjeta);
+		
+		if (errores.length > 0) {
+			erroresDiv.innerHTML = errores.join('<br>');
+			erroresDiv.classList.remove('d-none');
+			return;
+		}
+
+		erroresDiv.classList.add('d-none');
+		
+		// Cerrar modal de pago
+		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalPago"));
+		if (modalInstance) {
+			modalInstance.hide();
+		}
+		
+		// Procesar pago
+		procesarPago(datosTarjeta);
+	});
+
+	modalFooter.appendChild(botonCancelar);
+	modalFooter.appendChild(botonPagar);
+	return modalFooter;
+}
+
+function crearModalPago() {
+	const modalExistente = document.querySelector("#modalPago");
+	if (modalExistente) {
+		const modalInstance = bootstrap.Modal.getInstance(modalExistente);
+		if (modalInstance) {
+			modalInstance.dispose();
+		}
+		modalExistente.remove();
+	}
+
+	const modal = document.createElement("div");
+	modal.setAttribute("id", "modalPago");
+	modal.setAttribute("class", "modal fade");
+	modal.setAttribute("tabindex", "-1");
+
+	const modalDialog = document.createElement("div");
+	modalDialog.setAttribute("class", "modal-dialog modal-lg");
+
+	const modalContent = document.createElement("div");
+	modalContent.setAttribute("class", "modal-content");
+
+	modalContent.appendChild(crearHeaderModalPago());
+	modalContent.appendChild(crearBodyModalPago());
+	modalContent.appendChild(crearFooterModalPago());
+	modalDialog.appendChild(modalContent);
+	modal.appendChild(modalDialog);
+
+	document.body.appendChild(modal);
+	return modal;
+}
+
+function mostrarModalPago() {
+	const modal = crearModalPago();
+	const bootstrapModal = new bootstrap.Modal(modal, {
+		backdrop: false, // Sin fondo oscuro, igual que el modal del carrito
+		keyboard: true
+	});
+	bootstrapModal.show();
+}
+
 function crearBotonModal(texto, clases, callback) {
 	const boton = document.createElement("button");
 	boton.setAttribute("class", clases);
@@ -317,6 +740,18 @@ function actualizarContenidoModal() {
 	if (totalInfo) {
 		totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - ${formatearPrecio(totalCarrito())}</strong>`;
 	}
+
+	// Actualizar el estado del botón de finalizar compra
+	const botonFinalizarCompra = modalFooter.querySelector("button:nth-of-type(2)");
+	if (botonFinalizarCompra && botonFinalizarCompra.innerText === "Finalizar Compra") {
+		if (carrito.length === 0) {
+			botonFinalizarCompra.setAttribute("disabled", "true");
+			botonFinalizarCompra.setAttribute("class", "btn btn-secondary");
+		} else {
+			botonFinalizarCompra.removeAttribute("disabled");
+			botonFinalizarCompra.setAttribute("class", "btn btn-success");
+		}
+	}
 }
 
 function crearHeaderModal() {
@@ -370,6 +805,20 @@ function crearFooterModal() {
 	);
 	botonVaciar.setAttribute("type", "button");
 
+	const botonFinalizarCompra = crearBotonModal(
+		"Finalizar Compra",
+		"btn btn-success",
+		() => {
+			finalizarCompra();
+		},
+	);
+	botonFinalizarCompra.setAttribute("type", "button");
+	// Solo mostrar el botón si hay items en el carrito
+	if (carrito.length === 0) {
+		botonFinalizarCompra.setAttribute("disabled", "true");
+		botonFinalizarCompra.setAttribute("class", "btn btn-secondary");
+	}
+
 	const botonContinuar = crearBotonModal(
 		"Continuar Comprando",
 		"btn btnModalCarrito",
@@ -380,6 +829,7 @@ function crearFooterModal() {
 
 	modalFooter.appendChild(totalInfo);
 	modalFooter.appendChild(botonVaciar);
+	modalFooter.appendChild(botonFinalizarCompra);
 	modalFooter.appendChild(botonContinuar);
 	return modalFooter;
 }
