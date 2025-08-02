@@ -821,3 +821,52 @@ input[type="submit"]:hover {
 	transform: translateY(-1px);
 	transition: all 0.2s ease;
 }
+
+/* Estilos para el banner de ofertas */
+.banner-oferta {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 9999;
+	background: #f706ae;
+	color: white;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	font-family: "Montserrat", sans-serif;
+}
+
+.banner-oferta .banner-titulo {
+	margin: 0 0 8px 0;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.banner-oferta .banner-descripcion {
+	margin: 0 0 5px 0;
+	font-size: 1em;
+	font-weight: 500;
+}
+
+.banner-oferta .banner-detalle {
+	margin: 0;
+	font-size: 0.85em;
+	opacity: 0.9;
+}
+
+/* Animación simple para el banner */
+@keyframes slideInRight {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.banner-oferta {
+	animation: slideInRight 0.3s ease-out;
+}
