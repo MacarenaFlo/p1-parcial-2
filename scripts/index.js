@@ -742,8 +742,19 @@ function crearItemCarrito(item) {
 		"d-flex justify-content-between align-items-center border-bottom py-2",
 	);
 
+	// Contenedor para imagen e información del producto
+	const contenedorProducto = document.createElement("div");
+	contenedorProducto.setAttribute("class", "d-flex align-items-center");
+
+	
+	const imagenProducto = document.createElement("img");
+	imagenProducto.setAttribute("src", item.imagen);
+	imagenProducto.setAttribute("alt", item.nombre);
+	imagenProducto.setAttribute("class", "img-fluid me-3");
+	imagenProducto.setAttribute("style", "width: 60px; height: 60px; object-fit: cover; border-radius: 8px;");
+
 	const infoItem = document.createElement("div");
-	infoItem.setAttribute("class", "flex-grow-2 fs-1");
+	infoItem.setAttribute("class", "flex-grow-1");
 	infoItem.setAttribute("style", "font-weight: bold; color: #f706ae;");
 
 	infoItem.innerHTML = `
@@ -751,11 +762,12 @@ function crearItemCarrito(item) {
         <small class="text-muted">Cantidad: ${item.cantidad}</small>
     `;
 
+	contenedorProducto.appendChild(imagenProducto);
+	contenedorProducto.appendChild(infoItem);
+
 	const precioItem = document.createElement("div");
 	precioItem.setAttribute("class", "text-end");
-	precioItem.setAttribute(
-		"style",
-		"font-weight: bold; color: #f706ae; font-size: 3em;",
+	precioItem.setAttribute("style","font-weight: bold; color: #f706ae; font-size: 1.2em;",
 	);
 	precioItem.innerHTML = `
         <strong>${formatearPrecio(item.precio * item.cantidad)}</strong>
@@ -797,7 +809,7 @@ function crearItemCarrito(item) {
 	botonesItem.appendChild(botonDisminuir);
 	botonesItem.appendChild(botonEliminar);
 
-	itemCarrito.appendChild(infoItem);
+	itemCarrito.appendChild(contenedorProducto);
 	itemCarrito.appendChild(precioItem);
 	itemCarrito.appendChild(botonesItem);
 
