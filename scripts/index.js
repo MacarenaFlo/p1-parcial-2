@@ -371,7 +371,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 	const mensajeDiv = document.createElement("div");
 	mensajeDiv.setAttribute("class", "text-center mb-4");
 	mensajeDiv.innerHTML = `
-		<h4 class="text-success mb-3">¡Gracias por su compra!</h4>
+		<h4 class="mb-3">¡Gracias por su compra!</h4>
 		<p class="text-muted">Su pedido ha sido procesado exitosamente.</p>
 	`;
 
@@ -395,7 +395,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 				<small class="text-muted">Cantidad: ${item.cantidad} x ${formatearPrecio(item.precio)}</small>
 			</div>
 			<div class="text-end">
-				<strong class="text-success">${formatearPrecio(item.precio * item.cantidad)}</strong>
+				<strong class="">${formatearPrecio(item.precio * item.cantidad)}</strong>
 			</div>
 		`;
 		productosDiv.appendChild(itemDiv);
