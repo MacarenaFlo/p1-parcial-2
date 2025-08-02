@@ -411,7 +411,7 @@ function crearBodyModalConfirmacion(datosCompra) {
 		</div>
 		<div class="d-flex justify-content-between mb-2">
 			<span class="fw-bold">Total pagado:</span>
-			<span class="fw-bold text-success fs-5">${formatearPrecio(datosCompra.total)}</span>
+			<span class="fw-bold  fs-5">${formatearPrecio(datosCompra.total)}</span>
 		</div>
 		<div class="d-flex justify-content-between">
 			<span class="text-muted">Tarjeta utilizada:</span>
@@ -434,7 +434,7 @@ function crearFooterModalConfirmacion() {
 
 	const botonCerrar = document.createElement("button");
 	botonCerrar.setAttribute("type", "button");
-	botonCerrar.setAttribute("class", "btn btn-success");
+	botonCerrar.setAttribute("class", "btn btnModalCarrito");
 	botonCerrar.innerText = "Continuar";
 	botonCerrar.addEventListener("click", () => {
 		const modalInstance = bootstrap.Modal.getInstance(document.querySelector("#modalConfirmacion"));
@@ -562,11 +562,11 @@ function crearBodyModalPago() {
 	resumenContent.innerHTML = `
 		<div class="d-flex justify-content-between">
 			<span>Total de productos:</span>
-			<span class="fw-bold">${itemsEnCarrito()} items</span>
+			<span class="fw-bold fs-3">${itemsEnCarrito()} items</span>
 		</div>
 		<div class="d-flex justify-content-between">
 			<span>Total a pagar:</span>
-			<span class="fw-bold text-success fs-5">${formatearPrecio(totalCarrito())}</span>
+			<span class="fw-bold fs-3">${formatearPrecio(totalCarrito())}</span>
 		</div>
 	`;
 	
@@ -839,7 +839,7 @@ function actualizarContenidoModal() {
 		totalInfo.innerHTML = `<strong>Total: ${itemsEnCarrito()} items - ${formatearPrecio(totalCarrito())}</strong>`;
 	}
 
-	// Actualizar el estado del botón de finalizar compra
+	
 	const botonFinalizarCompra = modalFooter.querySelector("button:nth-of-type(2)");
 	if (botonFinalizarCompra && botonFinalizarCompra.innerText === "Finalizar Compra") {
 		if (carrito.length === 0) {
